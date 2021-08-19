@@ -420,10 +420,132 @@
       "style": {
         "title": "Update rates",
         "cancelButtonLabel": "Cancel?",
-        "saveButtonLabel": "Next, yo."
+        "saveButtonLabel": "Next"
       },
       "fields": [
         {
+        {{ "name": "status",
+          "type": "Drop Down",
+          "label": "Status",
+          "required": true,
+          "sortOrder": 5
+           "valueList": [
+            "Submitted",
+            "Reviewed",
+            "Approved",
+            "Rejected",
+            "Re-Submitted",
+            "Closed"
+          ],
+          "defaultValue": "Submitted"
+        },
+        {"name": "dateEnd",
+          "type": "date",
+          "label": "End Date",
+          "required": true,
+          "dateFormat": "DD-MM-YYYY",
+          "sortOrder": 0
+        },
+        {"name": "billingUserID"
+        "type": "Picker:Client"
+        "label": "Billing Contact"
+        "required": true,
+        "sortOrder": 15
+        },
+        {"name": "reportTo"
+        "type": "Text"
+        "label": "Reporting to"
+        "required": false,
+        "sortOrder": 20
+        }, 
+        {"name": "correlatedCustomText1"
+        "type": "Mini Picker"
+        "label": "Branch"
+        "required": true,
+        "sortOrder": 23
+        "valueList": [
+            "PP - Accounting & Finance",
+            "PP - Administrative",
+            "PP - Creative & Marketing",
+            "PP - Engineering",
+            "PP - HR",
+            "PP - IT",
+            "PP - Legal",
+            "PP - Sales",
+            "PP - Executive",
+            "PTS - Acct & Fin Temps",
+            "PTS - Temp Placement",
+            "PTS - Volume Staffing"
+          ],
+          "defaultValue": "PTS - Volume Staffing"
+        }, 
+        {"name": "employmentType"
+        "type": "Drop Down"
+        "label": "Employment Type"
+        "required": true,
+        "sortOrder": 30
+        "valueList": [
+            "Direct Hire",
+            "Temporary",
+            "Temp to Hire"
+          ]
+       },
+       {"name": "comments",
+          "type": "Text Block Large",
+          "label": "Comments",
+          "required": false,
+          "sortOrder": 110
+       }
+       { "name": "correlatedCustomText5",
+          "type": "Drop Down",
+          "label": "Office",
+          "required": true,
+          "sortOrder": 590
+           "valueList": [
+            "SLC"
+          ],
+          "defaultValue": "SLC"
+       },
+       { "name": "correlatedCustomText7",
+          "type": "Drop Down",
+          "label": "SBU",
+          "required": true,
+          "sortOrder": 600
+           "valueList": [
+            "ACCT",
+            "ADMN",
+            "CRTV",
+            "ENG",
+            "HR",
+            "IT",
+            "LEGL",
+            "S&M",
+            "EXEC",
+            "STND",
+            "VOL"
+          ]
+          "defaultValue": "VOL"
+       },
+       {"name": "referralFeeType",
+          "type": "Text",
+          "label": "Referral Fee Type",
+          "required": false,
+          "sortOrder": 8000
+          "defaultValue": "Percentage"
+       },
+       {"name": "approvingUserID",
+          "type": "Picker:Client",
+          "label": "Approving Client Contact",
+          "required": false,
+          "sortOrder": 11005
+       },
+       {"name": "backupApprovingUserID",
+          "type": "Picker:Client",
+          "label": "Backup Approving Client Contact",
+          "required": false,
+          "sortOrder": 11070
+       },
+       { 
           "name": "payRate",
           "type": "float",
           "label": "Pay Rate",
