@@ -157,13 +157,13 @@
         "saveButtonLabel": "Next"
       },
       "fields": [
-        { 
+        {
           "name": "status",
-          "type": "Drop Down",
+          "type": "dropdown",
           "label": "Status",
           "required": true,
           "sortOrder": 5,
-           "valueList": [
+          "valueList": [
             "Submitted",
             "Reviewed",
             "Approved",
@@ -173,59 +173,29 @@
           ],
           "defaultValue": "Submitted"
         },
-        {"name": "billingUserID",
-        "type": "Picker:Client",
-        "label": "Billing Contact",
-        "required": true,
-        "sortOrder": 15
-        },
-        {"name": "reportTo",
-        "type": "Text",
-        "label": "Reporting to",
-        "required": false,
-        "sortOrder": 20
-        },
-        {"name": "correlatedCustomText1",
-        "type": "Mini Picker",
-        "label": "Branch",
-        "required": true,
-        "sortOrder": 23,
-        "valueList": [
-            "PP - Accounting & Finance",
-            "PP - Administrative",
-            "PP - Creative & Marketing",
-            "PP - Engineering",
-            "PP - HR",
-            "PP - IT",
-            "PP - Legal",
-            "PP - Sales",
-            "PP - Executive",
-            "PTS - Acct & Fin Temps",
-            "PTS - Temp Placement",
-            "PTS - Volume Staffing"
-          ],
-          "defaultValue": "PTS - Volume Staffing"
-        },
-        {"name": "employmentType",
-        "type": "Drop Down",
-        "label": "Employment Type",
-        "required": true,
-        "sortOrder": 30,
-        "valueList": [
+        {
+          "name": "employmentType",
+          "type": "dropdown",
+          "label": "Employment Type",
+          "required": true,
+          "sortOrder": 30,
+          "valueList": [
             "Direct Hire",
             "Temporary",
             "Temp to Hire"
           ]
-       },
-       {"name": "dateBegin",
-        "type": "date",
-        "label": "Start Date",
-        "required": true,
-        "sortOrder": 40,
-        "dateFormat": "DD/MM/YYYY",
-        "defaultValue": "${jobOrder.startDate}"
         },
-        {"name": "dateEnd",
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.startDate}"
+        },
+        {
+          "name": "dateEnd",
           "type": "date",
           "label": "End Date",
           "required": true,
@@ -233,110 +203,38 @@
           "dateFormat": "DD-MM-YYYY",
           "defaultValue": "${jobOrder.dateEnd}"
         },
-        {"name": "correlatedCustomText6",
-          "type": "text",
-          "label": "PO Number",
-          "required": false,
-          "sortOrder": 53,
-          "defaultValue": "${jobOrder.correlatedCustomText6}"
-        },
-        {"name": "costCenter",
-          "type": "text",
-          "label": "Cost Center",
-          "required": false,
-          "sortOrder": 55,
-          "defaultValue": "${jobOrder.costCenter}"
-        },
-        {"name": "comments",
-          "type": "Text Block Large",
-          "label": "Comments",
-          "required": false,
-          "sortOrder": 110
-        },
-        {"name": "payRate",
-          "type": "money",
+        {
+          "name": "payRate",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
           "sortOrder": 140,
           "defaultValue": "${jobOrder.payRate}"
         },
-        {"name": "markUpPercentage",
-          "type": "percentage",
-          "label": "Mark-up %",
-          "required": false,
-          "sortOrder": 220,
-          "defaultValue": "${jobOrder.markUpPercentage}"
-        },
-        {"name": "clientBillRate",
-          "type": "money",
+        {
+          "name": "clientBillRate",
+          "type": "currency",
           "label": "Bill Rate",
           "required": true,
           "sortOrder": 225,
           "defaultValue": "${jobOrder.clientBillRate}"
         },
-        {"name": "correlatedCustomText4",
-          "type": "mini picker",
-          "label": "Invoice Format",
+        {
+          "name": "overtimeRate",
+          "type": "float",
+          "label": "Overtime Pay Rate",
           "required": true,
-          "sortOrder": 585,
-          "valueList": [
-            "TEMP",
-            "TEMPCUS",
-            "TEMPJOB",
-            "TEMPPO",
-            "PERM"
-           ],
-         "defaultValue": "TEMP"
+          "sortOrder": 2,
+          "defaultValue": "${overtimeRate}"
         },
-        {"name": "correlatedCustomText5",
-          "type": "Drop Down",
-          "label": "Office",
+        {
+          "name": "clientOvertimeRate",
+          "type": "float",
+          "label": "Overtime Bill Rate",
           "required": true,
-          "sortOrder": 590,
-           "valueList": [
-            "SLC"
-          ],
-          "defaultValue": "SLC"
-       },
-       {"name": "correlatedCustomText7",
-          "type": "Drop Down",
-          "label": "SBU",
-          "required": true,
-          "sortOrder": 600,
-           "valueList": [
-            "ACCT",
-            "ADMN",
-            "CRTV",
-            "ENG",
-            "HR",
-            "IT",
-            "LEGL",
-            "S&M",
-            "EXEC",
-            "STND",
-            "VOL"
-          ],
-          "defaultValue": "VOL"
-       },
-       {"name": "referralFeeType",
-          "type": "Text",
-          "label": "Referral Fee Type",
-          "required": false,
-          "sortOrder": 8000,
-          "defaultValue": "Percentage"
-       },
-       {"name": "approvingUserID",
-          "type": "Picker:Client",
-          "label": "Approving Client Contact",
-          "required": false,
-          "sortOrder": 11005
-       },
-       {"name": "backupApprovingUserID",
-          "type": "Picker:Client",
-          "label": "Backup Approving Client Contact",
-          "required": false,
-          "sortOrder": 11070
-       }
+          "sortOrder": 3,
+          "defaultValue": "${clientOvertimeRate}"
+        }
       ]
     },
     "table": {
@@ -348,7 +246,8 @@
         "formSaveButtonLabel": "Save the form"
       },
       "fields": [
-         {"name": "candidateName",
+        {
+          "name": "candidateName",
           "type": "text",
           "label": "Candidate",
           "required": true,
@@ -356,20 +255,22 @@
           "readOnly": true,
           "sortOrder": 3
         },
-        {"name": "jobTitle",
+        {
+          "name": "jobTitle",
           "type": "text",
           "label": "Job",
           "required": true,
-          "sortOrder": 4
-          "defaultValue": "${jobOrder.title}"
+          "sortOrder": 4,
+          "defaultValue": "${jobOrder.title}",
           "readOnly": true
-        }
-        { "name": "status",
-          "type": "Drop Down",
+        },
+        {
+          "name": "status",
+          "type": "dropdown",
           "label": "Status",
           "required": true,
-          "sortOrder": 5
-           "valueList": [
+          "sortOrder": 5,
+          "valueList": [
             "Submitted",
             "Reviewed",
             "Approved",
@@ -379,171 +280,39 @@
           ],
           "defaultValue": "Submitted"
         },
-        {"name": "billingUserID"
-        "type": "Picker:Client"
-        "label": "Billing Contact"
-        "required": true,
-        "sortOrder": 15
-        },
-        {"name": "reportTo"
-        "type": "Text"
-        "label": "Reporting to"
-        "required": false,
-        "sortOrder": 20
-        },
-        {"name": "correlatedCustomText1"
-        "type": "Mini Picker"
-        "label": "Branch"
-        "required": true,
-        "sortOrder": 23
-        "valueList": [
-            "PP - Accounting & Finance",
-            "PP - Administrative",
-            "PP - Creative & Marketing",
-            "PP - Engineering",
-            "PP - HR",
-            "PP - IT",
-            "PP - Legal",
-            "PP - Sales",
-            "PP - Executive",
-            "PTS - Acct & Fin Temps",
-            "PTS - Temp Placement",
-            "PTS - Volume Staffing"
-          ],
-          "defaultValue": "PTS - Volume Staffing"
-        },
-        {"name": "employmentType"
-        "type": "Drop Down"
-        "label": "Employment Type"
-        "required": true,
-        "sortOrder": 30
-        "valueList": [
-            "Direct Hire",
-            "Temporary",
-            "Temp to Hire"
-          ]
-       },
-       {"name": "dateBegin",
-        "type": "date",
-        "label": "Start Date",
-        "required": true,
-        "sortOrder": 40,
-        "dateFormat": "DD/MM/YYYY",
-        "defaultValue": "${jobOrder.startDate}"
-        },
-        {"name": "dateEnd",
-          "type": "date",
-          "label": "End Date",
-          "required": true,
-          "sortOrder": 45
-          "dateFormat": "DD-MM-YYYY",
-          "defaultValue": "${jobOrder.dateEnd}"
-        }
-        {"name": "correlatedCustomText6",
-          "type": "text",
-          "label": "PO Number",
-          "required": false,
-          "sortOrder": 53
-          "defaultValue": "${jobOrder.correlatedCustomText6}"
-        }
-        {"name": "costCenter",
-          "type": "text",
-          "label": "Cost Center",
-          "required": false,
-          "sortOrder": 55
-          "defaultValue": "${jobOrder.costCenter}"
-        }
-        {"name": "comments",
-          "type": "Text Block Large",
-          "label": "Comments",
-          "required": false,
-          "sortOrder": 110
-        }   
-        {"name": "payRate",
-          "type": "money",
+        {
+          "name": "payRate",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
-          "sortOrder": 140
-          "defaultValue": "${jobOrder.payRate}"
-        }
-        {"name": "markUpPercentage",
-          "type": "percentage",
-          "label": "Mark-up %",
-          "required": false,
-          "sortOrder": 220
-          "defaultValue": "${jobOrder.markUpPercentage}"
-        }
-        {"name": "clientBillRate",
-          "type": "money",
+          "sortOrder": 140,
+          "defaultValue": "${payRate}"
+        },
+        {
+          "name": "clientBillRate",
+          "type": "currency",
           "label": "Bill Rate",
           "required": true,
-          "sortOrder": 225
-          "defaultValue": "${jobOrder.clientBillRate}"
+          "sortOrder": 225,
+          "defaultValue": "${clientBillRate}"
+        },
+        {
+          "name": "overtimeRate",
+          "type": "float",
+          "label": "Overtime Pay Rate",
+          "required": true,
+          "sortOrder": 2,
+          "defaultValue": "${overtimeRate}"
+        },
+        {
+          "name": "clientOvertimeRate",
+          "type": "float",
+          "label": "Overtime Bill Rate",
+          "required": true,
+          "sortOrder": 3,
+          "defaultValue": "${clientOvertimeRate}"
         }
-        {"name": "correlatedCustomText4",
-          "type": "mini picker",
-          "label": "Invoice Format",
-          "required": true,
-          "sortOrder": 585
-          "valueList": [
-            "TEMP",
-            "TEMPCUS",
-            "TEMPJOB",
-            "TEMPPO",
-            "PERM",
-          ],
-          "defaultValue": "TEMP"
-        }
-        {"name": "correlatedCustomText5",
-          "type": "Drop Down",
-          "label": "Office",
-          "required": true,
-          "sortOrder": 590
-           "valueList": [
-            "SLC"
-          ],
-          "defaultValue": "SLC"
-       }
-       {"name": "correlatedCustomText7",
-          "type": "Drop Down",
-          "label": "SBU",
-          "required": true,
-          "sortOrder": 600
-           "valueList": [
-            "ACCT",
-            "ADMN",
-            "CRTV",
-            "ENG",
-            "HR",
-            "IT",
-            "LEGL",
-            "S&M",
-            "EXEC",
-            "STND",
-            "VOL"
-          ]
-          "defaultValue": "VOL"
-       }
-       {"name": "referralFeeType",
-          "type": "Text",
-          "label": "Referral Fee Type",
-          "required": false,
-          "sortOrder": 8000
-          "defaultValue": "Percentage"
-       }
-       {"name": "approvingUserID",
-          "type": "Picker:Client",
-          "label": "Approving Client Contact",
-          "required": false,
-          "sortOrder": 11005
-       }
-       {"name": "backupApprovingUserID",
-          "type": "Picker:Client",
-          "label": "Backup Approving Client Contact",
-          "required": false,
-          "sortOrder": 11070
-       }      
-     ]
+      ]
     }
   },
   "rates": {
@@ -558,9 +327,9 @@
         "saveButtonLabel": "Next"
       },
       "fields": [
-        { 
+        {
           "name": "status",
-          "type": "Drop Down",
+          "type": "dropdown",
           "label": "Status",
           "required": true,
           "sortOrder": 5,
@@ -574,169 +343,55 @@
           ],
           "defaultValue": "Submitted"
         },
-        {"name": "billingUserID",
-        "type": "Picker:Client",
-        "label": "Billing Contact",
-        "required": true,
-        "sortOrder": 15
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${startDate}"
         },
-        {"name": "reportTo",
-        "type": "Text",
-        "label": "Reporting to",
-        "required": false,
-        "sortOrder": 20
-        },
-        {"name": "correlatedCustomText1",
-        "type": "Mini Picker",
-        "label": "Branch",
-        "required": true,
-        "sortOrder": 23,
-        "valueList": [
-            "PP - Accounting & Finance",
-            "PP - Administrative",
-            "PP - Creative & Marketing",
-            "PP - Engineering",
-            "PP - HR",
-            "PP - IT",
-            "PP - Legal",
-            "PP - Sales",
-            "PP - Executive",
-            "PTS - Acct & Fin Temps",
-            "PTS - Temp Placement",
-            "PTS - Volume Staffing"
-          ],
-          "defaultValue": "PTS - Volume Staffing"
-        },
-        {"name": "employmentType",
-        "type": "Drop Down",
-        "label": "Employment Type",
-        "required": true,
-        "sortOrder": 30,
-        "valueList": [
-            "Direct Hire",
-            "Temporary",
-            "Temp to Hire"
-          ]
-       },
-       {"name": "dateBegin",
-        "type": "date",
-        "label": "Start Date",
-        "required": true,
-        "sortOrder": 40,
-        "dateFormat": "DD/MM/YYYY",
-        "defaultValue": "${jobOrder.startDate}"
-        },
-        {"name": "dateEnd",
+        {
+          "name": "dateEnd",
           "type": "date",
           "label": "End Date",
           "required": true,
           "sortOrder": 45,
           "dateFormat": "DD-MM-YYYY",
-          "defaultValue": "${jobOrder.dateEnd}"
+          "defaultValue": "${dateEnd}"
         },
-        {"name": "correlatedCustomText6", 
-          "type": "text",
-          "label": "PO Number",
-          "required": false,
-          "sortOrder": 53,
-          "defaultValue": "${jobOrder.correlatedCustomText6}"
-        },
-        {"name": "costCenter",
-          "type": "text",
-          "label": "Cost Center",
-          "required": false,
-          "sortOrder": 55,
-          "defaultValue": "${jobOrder.costCenter}"
-        },
-        {"name": "comments",
-          "type": "Text Block Large",
-          "label": "Comments",
-          "required": false,
-          "sortOrder": 110
-        },  
-        {"name": "payRate",
-          "type": "money",
+        {
+          "name": "payRate",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
           "sortOrder": 140,
-          "defaultValue": "${jobOrder.payRate}"
+          "defaultValue": "${payRate}"
         },
-        {"name": "markUpPercentage",
-          "type": "percentage",
-          "label": "Mark-up %",
-          "required": false,
-          "sortOrder": 220,
-          "defaultValue": "${jobOrder.markUpPercentage}"
-        },
-        {"name": "clientBillRate",
-          "type": "money",
+        {
+          "name": "clientBillRate",
+          "type": "currency",
           "label": "Bill Rate",
           "required": true,
           "sortOrder": 225,
-          "defaultValue": "${jobOrder.clientBillRate}"
+          "defaultValue": "${clientBillRate}"
         },
-        {"name": "correlatedCustomText4",
-          "type": "mini picker",
-          "label": "Invoice Format",
+        {
+          "name": "overtimeRate",
+          "type": "float",
+          "label": "Overtime Pay Rate",
           "required": true,
-          "sortOrder": 585,
-          "valueList": [
-            "TEMP",
-            "TEMPCUS",
-            "TEMPJOB",
-            "TEMPPO",
-            "PERM"
-           ],
-          "defaultValue": "TEMP"
+          "sortOrder": 155,
+          "defaultValue": "${overtimeRate}"
         },
-        {"name": "correlatedCustomText5",
-          "type": "Drop Down",
-          "label": "Office",
+        {
+          "name": "clientOvertimeRate",
+          "type": "float",
+          "label": "Overtime Bill Rate",
           "required": true,
-          "sortOrder": 590,
-           "valueList": [
-            "SLC"
-          ],
-          "defaultValue": "SLC"
-       },
-       {"name": "correlatedCustomText7",
-          "type": "Drop Down",
-          "label": "SBU",
-          "required": true,
-          "sortOrder": 600,
-           "valueList": [
-            "ACCT",
-            "ADMN",
-            "CRTV",
-            "ENG",
-            "HR",
-            "IT",
-            "LEGL",
-            "S&M",
-            "EXEC",
-            "STND",
-            "VOL"
-           ],
-          "defaultValue": "VOL"
-       },
-       {"name": "referralFeeType",
-          "type": "Text",
-          "label": "Referral Fee Type",
-          "required": false,
-          "sortOrder": 8000,
-          "defaultValue": "Percentage"
-       },
-       {"name": "approvingUserID",
-          "type": "Picker:Client",
-          "label": "Approving Client Contact",
-          "required": false,
-          "sortOrder": 11005
-       },
-       {"name": "backupApprovingUserID",
-          "type": "Picker:Client",
-          "label": "Backup Approving Client Contact",
-          "required": false,
-          "sortOrder": 11070
+          "sortOrder": 245,
+          "defaultValue": "${clientOvertimeRate}"
         }
       ]
     },
@@ -749,7 +404,8 @@
         "formSaveButtonLabel": "Save the form"
       },
       "fields": [
-         {"name": "candidateName",
+        {
+          "name": "candidateName",
           "type": "text",
           "label": "Candidate",
           "required": true,
@@ -757,7 +413,8 @@
           "readOnly": true,
           "sortOrder": 3
         },
-        {"name": "jobTitle",
+        {
+          "name": "jobTitle",
           "type": "text",
           "label": "Job",
           "required": true,
@@ -765,12 +422,13 @@
           "defaultValue": "${jobOrder.title}",
           "readOnly": true
         },
-        { "name": "status",
-          "type": "Drop Down",
+        {
+          "name": "status",
+          "type": "dropdown",
           "label": "Status",
           "required": true,
           "sortOrder": 5,
-           "valueList": [
+          "valueList": [
             "Submitted",
             "Reviewed",
             "Approved",
@@ -780,174 +438,64 @@
           ],
           "defaultValue": "Submitted"
         },
-        {"name": "billingUserID",
-        "type": "Picker:Client",
-        "label": "Billing Contact",
-        "required": true,
-        "sortOrder": 15
+        {
+          "name": "employmentType",
+          "type": "dropdown",
+          "label": "Employment Type",
+          "required": true,
+          "readOnly": true,
+          "sortOrder": 30,
+          "defaultValue": "${employmentType}"
         },
-        {"name": "reportTo",
-        "type": "Text",
-        "label": "Reporting to",
-        "required": false,
-        "sortOrder": 20
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${startDate}"
         },
-        {"name": "correlatedCustomText1",
-        "type": "Mini Picker",
-        "label": "Branch",
-        "required": true,
-        "sortOrder": 23,
-        "valueList": [
-            "PP - Accounting & Finance",
-            "PP - Administrative",
-            "PP - Creative & Marketing",
-            "PP - Engineering",
-            "PP - HR",
-            "PP - IT",
-            "PP - Legal",
-            "PP - Sales",
-            "PP - Executive",
-            "PTS - Acct & Fin Temps",
-            "PTS - Temp Placement",
-            "PTS - Volume Staffing"
-          ],
-          "defaultValue": "PTS - Volume Staffing"
-        },
-        {"name": "employmentType",
-        "type": "Drop Down",
-        "label": "Employment Type",
-        "required": true,
-        "sortOrder": 30,
-        "valueList": [
-            "Direct Hire",
-            "Temporary",
-            "Temp to Hire"
-          ]
-       },
-       {"name": "dateBegin",
-        "type": "date",
-        "label": "Start Date",
-        "required": true,
-        "sortOrder": 40,
-        "dateFormat": "DD/MM/YYYY",
-        "defaultValue": "${jobOrder.startDate}"
-        },
-        {"name": "dateEnd",
+        {
+          "name": "dateEnd",
           "type": "date",
           "label": "End Date",
           "required": true,
           "sortOrder": 45,
           "dateFormat": "DD-MM-YYYY",
-          "defaultValue": "${jobOrder.dateEnd}"
+          "defaultValue": "${dateEnd}"
         },
-        {"name": "correlatedCustomText6",
-          "type": "text",
-          "label": "PO Number",
-          "required": false,
-          "sortOrder": 53,
-          "defaultValue": "${jobOrder.correlatedCustomText6}"
-        },
-        {"name": "costCenter",
-          "type": "text",
-          "label": "Cost Center",
-          "required": false,
-          "sortOrder": 55,
-          "defaultValue": "${jobOrder.costCenter}"
-        },
-        {"name": "comments",
-          "type": "Text Block Large",
-          "label": "Comments",
-          "required": false,
-          "sortOrder": 110
-        },   
-        {"name": "payRate",
-          "type": "money",
+        {
+          "name": "payRate",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
           "sortOrder": 140,
-          "defaultValue": "${jobOrder.payRate}"
+          "defaultValue": "${payRate}"
         },
-        {"name": "markUpPercentage",
-          "type": "percentage",
-          "label": "Mark-up %",
-          "required": false,
-          "sortOrder": 220,
-          "defaultValue": "${jobOrder.markUpPercentage}"
-        },
-        {"name": "clientBillRate",
-          "type": "money",
+        {
+          "name": "clientBillRate",
+          "type": "currency",
           "label": "Bill Rate",
           "required": true,
           "sortOrder": 225,
-          "defaultValue": "${jobOrder.clientBillRate}"
+          "defaultValue": "${clientBillRate}"
         },
-        {"name": "correlatedCustomText4",
-          "type": "mini picker",
-          "label": "Invoice Format",
+        {
+          "name": "overtimeRate",
+          "type": "float",
+          "label": "Overtime Pay Rate",
           "required": true,
-          "sortOrder": 585,
-          "valueList": [
-            "TEMP",
-            "TEMPCUS",
-            "TEMPJOB",
-            "TEMPPO",
-            "PERM"
-          ],
-          "defaultValue": "TEMP"
+          "sortOrder": 155,
+          "defaultValue": "${overtimeRate}"
         },
         {
-         "name": "correlatedCustomText5",
-         "type": "Drop Down",
-         "label": "Office",
-         "required": true,
-         "sortOrder": 590,
-         "valueList": [
-           "SLC"
-          ],
-          "defaultValue": "SLC"
-        },
-        {
-         "name": "correlatedCustomText7",
-         "type": "Drop Down",
-         "label": "SBU",
-         "required": true,
-         "sortOrder": 600,
-         "valueList": [
-            "ACCT",
-            "ADMN",
-            "CRTV",
-            "ENG",
-            "HR",
-            "IT",
-            "LEGL",
-            "S&M",
-            "EXEC",
-            "STND",
-            "VOL"
-          ],
-          "defaultValue": "VOL"
-       },
-       {
-         "name": "referralFeeType",
-         "type": "Text",
-         "label": "Referral Fee Type",
-         "required": false,
-         "sortOrder": 8000,
-         "defaultValue": "Percentage"
-       },
-       {
-         "name": "approvingUserID",
-         "type": "Picker:Client",
-         "label": "Approving Client Contact",
-         "required": false,
-         "sortOrder": 11005
-       },
-       {
-         "name": "backupApprovingUserID",
-         "type": "Picker:Client",
-         "label": "Backup Approving Client Contact",
-         "required": false,
-         "sortOrder": 11070
+          "name": "clientOvertimeRate",
+          "type": "float",
+          "label": "Overtime Bill Rate",
+          "required": true,
+          "sortOrder": 245,
+          "defaultValue": "${clientOvertimeRate}"
         }
       ]
     }
@@ -961,9 +509,9 @@
         "saveButtonLabel": "Next!"
       },
       "fields": [
-       { 
+        {
           "name": "status",
-          "type": "Drop Down",
+          "type": "dropdown",
           "label": "Status",
           "required": true,
           "sortOrder": 5,
@@ -977,24 +525,28 @@
           ],
           "defaultValue": "Submitted"
         },
-        {"name": "billingUserID",
-        "type": "Picker:Client",
-        "label": "Billing Contact",
-        "required": true,
-        "sortOrder": 15
+        {
+          "name": "billingUserID",
+          "type": "picker",
+          "label": "Billing Contact",
+          "required": true,
+          "sortOrder": 15,
+          "defaultValue": "${jobOrder.clientContact}"
         },
-        {"name": "reportTo",
-        "type": "Text",
-        "label": "Reporting to",
-        "required": false,
-        "sortOrder": 20
+        {
+          "name": "reportTo",
+          "type": "text",
+          "label": "Reporting to",
+          "required": false,
+          "sortOrder": 20
         },
-        {"name": "correlatedCustomText1",
-        "type": "Mini Picker",
-        "label": "Branch",
-        "required": true,
-        "sortOrder": 23,
-        "valueList": [
+        {
+          "name": "correlatedCustomText1",
+          "type": "dropdown",
+          "label": "Branch",
+          "required": true,
+          "sortOrder": 23,
+          "valueList": [
             "PP - Accounting & Finance",
             "PP - Administrative",
             "PP - Creative & Marketing",
@@ -1010,26 +562,29 @@
           ],
           "defaultValue": "PTS - Volume Staffing"
         },
-        {"name": "employmentType",
-        "type": "Drop Down",
-        "label": "Employment Type",
-        "required": true,
-        "sortOrder": 30,
-        "valueList": [
+        {
+          "name": "employmentType",
+          "type": "dropdown",
+          "label": "Employment Type",
+          "required": true,
+          "sortOrder": 30,
+          "valueList": [
             "Direct Hire",
             "Temporary",
             "Temp to Hire"
           ]
-       },
-       {"name": "dateBegin",
-        "type": "date",
-        "label": "Start Date",
-        "required": true,
-        "sortOrder": 40,
-        "dateFormat": "DD/MM/YYYY",
-        "defaultValue": "${jobOrder.startDate}"
         },
-        {"name": "dateEnd",
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.startDate}"
+        },
+        {
+          "name": "dateEnd",
           "type": "date",
           "label": "End Date",
           "required": true,
@@ -1037,49 +592,56 @@
           "dateFormat": "DD-MM-YYYY",
           "defaultValue": "${jobOrder.dateEnd}"
         },
-        {"name": "correlatedCustomText6", 
+        {
+          "name": "correlatedCustomText6",
           "type": "text",
           "label": "PO Number",
           "required": false,
           "sortOrder": 53,
           "defaultValue": "${jobOrder.correlatedCustomText6}"
         },
-        {"name": "costCenter",
+        {
+          "name": "costCenter",
           "type": "text",
           "label": "Cost Center",
           "required": false,
           "sortOrder": 55,
           "defaultValue": "${jobOrder.costCenter}"
         },
-        {"name": "comments",
+        {
+          "name": "comments",
           "type": "Text Block Large",
           "label": "Comments",
           "required": false,
           "sortOrder": 110
-        },  
-        {"name": "payRate",
-          "type": "money",
+        },
+        {
+          "name": "payRate",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
           "sortOrder": 140,
           "defaultValue": "${jobOrder.payRate}"
         },
-        {"name": "markUpPercentage",
+        {
+          "name": "markUpPercentage",
           "type": "percentage",
           "label": "Mark-up %",
           "required": false,
           "sortOrder": 220,
           "defaultValue": "${jobOrder.markUpPercentage}"
         },
-        {"name": "clientBillRate",
-          "type": "money",
+        {
+          "name": "clientBillRate",
+          "type": "currency",
           "label": "Bill Rate",
           "required": true,
           "sortOrder": 225,
           "defaultValue": "${jobOrder.clientBillRate}"
         },
-        {"name": "correlatedCustomText4",
-          "type": "mini picker",
+        {
+          "name": "correlatedCustomText4",
+          "type": "dropdown",
           "label": "Invoice Format",
           "required": true,
           "sortOrder": 585,
@@ -1089,25 +651,27 @@
             "TEMPJOB",
             "TEMPPO",
             "PERM"
-           ],
+          ],
           "defaultValue": "TEMP"
         },
-        {"name": "correlatedCustomText5",
-          "type": "Drop Down",
+        {
+          "name": "correlatedCustomText5",
+          "type": "dropdown",
           "label": "Office",
           "required": true,
           "sortOrder": 590,
-           "valueList": [
+          "valueList": [
             "SLC"
           ],
           "defaultValue": "SLC"
-       },
-       {"name": "correlatedCustomText7",
-          "type": "Drop Down",
+        },
+        {
+          "name": "correlatedCustomText7",
+          "type": "dropdown",
           "label": "SBU",
           "required": true,
           "sortOrder": 600,
-           "valueList": [
+          "valueList": [
             "ACCT",
             "ADMN",
             "CRTV",
@@ -1119,28 +683,31 @@
             "EXEC",
             "STND",
             "VOL"
-           ],
+          ],
           "defaultValue": "VOL"
-       },
-       {"name": "referralFeeType",
-          "type": "Text",
+        },
+        {
+          "name": "referralFeeType",
+          "type": "text",
           "label": "Referral Fee Type",
           "required": false,
           "sortOrder": 8000,
           "defaultValue": "Percentage"
-       },
-       {"name": "approvingUserID",
-          "type": "Picker:Client",
+        },
+        {
+          "name": "approvingUserID",
+          "type": "picker",
           "label": "Approving Client Contact",
           "required": false,
           "sortOrder": 11005
-       },
-       {"name": "backupApprovingUserID",
-          "type": "Picker:Client",
+        },
+        {
+          "name": "backupApprovingUserID",
+          "type": "picker",
           "label": "Backup Approving Client Contact",
           "required": false,
           "sortOrder": 11070
-       }
+        }
       ]
     },
     "table": {
@@ -1152,7 +719,8 @@
         "formSaveButtonLabel": "Save the form"
       },
       "fields": [
-         {"name": "candidateName",
+        {
+          "name": "candidateName",
           "type": "text",
           "label": "Candidate",
           "required": true,
@@ -1160,7 +728,8 @@
           "readOnly": true,
           "sortOrder": 3
         },
-        {"name": "jobTitle",
+        {
+          "name": "jobTitle",
           "type": "text",
           "label": "Job",
           "required": true,
@@ -1168,12 +737,13 @@
           "defaultValue": "${jobOrder.title}",
           "readOnly": true
         },
-        { "name": "status",
-          "type": "Drop Down",
+        {
+          "name": "status",
+          "type": "dropdown",
           "label": "Status",
           "required": true,
           "sortOrder": 5,
-           "valueList": [
+          "valueList": [
             "Submitted",
             "Reviewed",
             "Approved",
@@ -1183,24 +753,27 @@
           ],
           "defaultValue": "Submitted"
         },
-        {"name": "billingUserID",
-        "type": "Picker:Client",
-        "label": "Billing Contact",
-        "required": true,
-        "sortOrder": 15
+        {
+          "name": "billingUserID",
+          "type": "picker",
+          "label": "Billing Contact",
+          "required": true,
+          "sortOrder": 15
         },
-        {"name": "reportTo",
-        "type": "Text",
-        "label": "Reporting to",
-        "required": false,
-        "sortOrder": 20
+        {
+          "name": "reportTo",
+          "type": "text",
+          "label": "Reporting to",
+          "required": false,
+          "sortOrder": 20
         },
-        {"name": "correlatedCustomText1",
-        "type": "Mini Picker",
-        "label": "Branch",
-        "required": true,
-        "sortOrder": 23,
-        "valueList": [
+        {
+          "name": "correlatedCustomText1",
+          "type": "dropdown",
+          "label": "Branch",
+          "required": true,
+          "sortOrder": 23,
+          "valueList": [
             "PP - Accounting & Finance",
             "PP - Administrative",
             "PP - Creative & Marketing",
@@ -1216,26 +789,29 @@
           ],
           "defaultValue": "PTS - Volume Staffing"
         },
-        {"name": "employmentType",
-        "type": "Drop Down",
-        "label": "Employment Type",
-        "required": true,
-        "sortOrder": 30,
-        "valueList": [
+        {
+          "name": "employmentType",
+          "type": "dropdown",
+          "label": "Employment Type",
+          "required": true,
+          "sortOrder": 30,
+          "valueList": [
             "Direct Hire",
             "Temporary",
             "Temp to Hire"
           ]
-       },
-       {"name": "dateBegin",
-        "type": "date",
-        "label": "Start Date",
-        "required": true,
-        "sortOrder": 40,
-        "dateFormat": "DD/MM/YYYY",
-        "defaultValue": "${jobOrder.startDate}"
         },
-        {"name": "dateEnd",
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.startDate}"
+        },
+        {
+          "name": "dateEnd",
           "type": "date",
           "label": "End Date",
           "required": true,
@@ -1243,49 +819,56 @@
           "dateFormat": "DD-MM-YYYY",
           "defaultValue": "${jobOrder.dateEnd}"
         },
-        {"name": "correlatedCustomText6",
+        {
+          "name": "correlatedCustomText6",
           "type": "text",
           "label": "PO Number",
           "required": false,
           "sortOrder": 53,
           "defaultValue": "${jobOrder.correlatedCustomText6}"
         },
-        {"name": "costCenter",
+        {
+          "name": "costCenter",
           "type": "text",
           "label": "Cost Center",
           "required": false,
           "sortOrder": 55,
           "defaultValue": "${jobOrder.costCenter}"
         },
-        {"name": "comments",
+        {
+          "name": "comments",
           "type": "Text Block Large",
           "label": "Comments",
           "required": false,
           "sortOrder": 110
-        },   
-        {"name": "payRate",
-          "type": "money",
+        },
+        {
+          "name": "payRate",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
           "sortOrder": 140,
           "defaultValue": "${jobOrder.payRate}"
         },
-        {"name": "markUpPercentage",
+        {
+          "name": "markUpPercentage",
           "type": "percentage",
           "label": "Mark-up %",
           "required": false,
           "sortOrder": 220,
           "defaultValue": "${jobOrder.markUpPercentage}"
         },
-        {"name": "clientBillRate",
-          "type": "money",
+        {
+          "name": "clientBillRate",
+          "type": "currency",
           "label": "Bill Rate",
           "required": true,
           "sortOrder": 225,
           "defaultValue": "${jobOrder.clientBillRate}"
         },
-        {"name": "correlatedCustomText4",
-          "type": "mini picker",
+        {
+          "name": "correlatedCustomText4",
+          "type": "dropdown",
           "label": "Invoice Format",
           "required": true,
           "sortOrder": 585,
@@ -1299,23 +882,23 @@
           "defaultValue": "TEMP"
         },
         {
-         "name": "correlatedCustomText5",
-         "type": "Drop Down",
-         "label": "Office",
-         "required": true,
-         "sortOrder": 590,
-         "valueList": [
-           "SLC"
+          "name": "correlatedCustomText5",
+          "type": "dropdown",
+          "label": "Office",
+          "required": true,
+          "sortOrder": 590,
+          "valueList": [
+            "SLC"
           ],
           "defaultValue": "SLC"
         },
         {
-         "name": "correlatedCustomText7",
-         "type": "Drop Down",
-         "label": "SBU",
-         "required": true,
-         "sortOrder": 600,
-         "valueList": [
+          "name": "correlatedCustomText7",
+          "type": "dropdown",
+          "label": "SBU",
+          "required": true,
+          "sortOrder": 600,
+          "valueList": [
             "ACCT",
             "ADMN",
             "CRTV",
@@ -1329,28 +912,28 @@
             "VOL"
           ],
           "defaultValue": "VOL"
-       },
-       {
-         "name": "referralFeeType",
-         "type": "Text",
-         "label": "Referral Fee Type",
-         "required": false,
-         "sortOrder": 8000,
-         "defaultValue": "Percentage"
-       },
-       {
-         "name": "approvingUserID",
-         "type": "Picker:Client",
-         "label": "Approving Client Contact",
-         "required": false,
-         "sortOrder": 11005
-       },
-       {
-         "name": "backupApprovingUserID",
-         "type": "Picker:Client",
-         "label": "Backup Approving Client Contact",
-         "required": false,
-         "sortOrder": 11070
+        },
+        {
+          "name": "referralFeeType",
+          "type": "Text",
+          "label": "Referral Fee Type",
+          "required": false,
+          "sortOrder": 8000,
+          "defaultValue": "Percentage"
+        },
+        {
+          "name": "approvingUserID",
+          "type": "Picker:Client",
+          "label": "Approving Client Contact",
+          "required": false,
+          "sortOrder": 11005
+        },
+        {
+          "name": "backupApprovingUserID",
+          "type": "Picker:Client",
+          "label": "Backup Approving Client Contact",
+          "required": false,
+          "sortOrder": 11070
         }
       ]
     }
