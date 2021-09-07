@@ -1,298 +1,132 @@
 {
-  "createPerm": {
-    "entity": "JobSubmission",
-    "filter": {
-      "status": [
-        "Placed"
-      ],
-      "jobOrder.employmentType": "Contract",
-      "candidate.employeeType": [
-        "1099"
-      ]
+  "extend": {
+    "entity": "Placement",
+    "config": {
+      "placementChangeRequestType": "Mass End Placements"
     },
-    "updates": {
-      "candidate": {
-        "status": "Placed"
-      },
-      "jobOrder": {
-        "isOpen": false
-      },
-      "jobSubmission": {
-        "status": "Placed"
-      }
-    },
-    "table": {
+    "form": {
       "style": {
-        "title": "Create Perm Placements",
-        "singleActionButtonLabel": "Create",
-        "massActionButtonLabel": "Create all selected",
-        "formCancelButtonLabel": "Cancel!!!",
-        "formSaveButtonLabel": "Save the form",
-        "filterRowsButtonLabelShow": "Show ineligible rows",
-        "filterRowsButtonLabelHide": "Hide ineligible rows"
+        "title": "End Placements",
+        "cancelButtonLabel": "Cancel",
+        "saveButtonLabel": "Next"
       },
       "fields": [
         {
-          "name": "submissionStatus",
-          "type": "text",
-          "label": "Submission Статус",
-          "sortOrder": 0,
-          "defaultValue": "${status}",
-          "displayOnly": true
+          "name": "status",
+          "type": "dropdown",
+          "label": "Status",
+          "required": true,
+          "sortOrder": 5,
+          "valueList": [
+            "Rejected",
+            "Re-Submitted",
+            "Closed"
+          ],
+          "defaultValue": "Closed"
         },
         {
-          "name": "jobEmploymentType",
-          "type": "text",
-          "label": "Job Employment Type",
-          "sortOrder": 0,
-          "defaultValue": "${jobOrder.employmentType}",
-          "displayOnly": true
+          "name": "dateEnd",
+          "type": "date",
+          "label": "End Date",
+          "required": true,
+          "sortOrder": 10,
+          "dateFormat": "DD-MM-YYYY",
+          "defaultValue": "${dateEnd}"
         },
+        {
+          "name": "terminationReason",
+          "type": "dropdown",
+          "label": "Termination Reason",
+          "sortOrder": 15,
+          "valueList": [
+            "Assignment Complete",
+            "Converted",
+            "Job Abandonment",
+            "Resigned - Gave Notice",
+            "Resigned - No Notice",
+            "Term - Attendance",
+            "Term - Cultural",
+            "Term - Skills",
+            "Never Started",
+            "Failed Compliance"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "style": {
+        "title": "End Placements",
+        "singleActionButtonLabel": "End",
+        "massActionButtonLabel": "End all selected",
+        "formCancelButtonLabel": "Cancel",
+        "formSaveButtonLabel": "Save"
+      },
+      "fields": [
         {
           "name": "candidateName",
           "type": "text",
           "label": "Candidate",
+          "required": true,
           "defaultValue": "${candidate.name}",
-          "displayOnly": true,
-          "sortOrder": 0
-        },
-        {
-          "name": "jobTitle",
-          "type": "text",
-          "label": "Job",
-          "defaultValue": "${jobOrder.title}",
-          "displayOnly": true,
-          "sortOrder": 1
-        },
-        {
-          "name": "salary",
-          "type": "currency",
-          "label": "Salary",
-          "required": true,
-          "sortOrder": 2,
-          "defaultValue": "${jobOrder.salary}",
-          "currencySymbol": "€"
-        },
-        {
-          "name": "fee",
-          "type": "percentage",
-          "label": "Fee",
-          "required": true,
-          "sortOrder": 3,
-          "defaultValue": "${jobOrder.feeArrangement}"
-        },
-        {
-          "name": "otherHourlyFee",
-          "type": "float",
-          "label": "Other Fee (flat)",
-          "required": false,
-          "sortOrder": 4
-        },
-        {
-          "name": "dateBegin",
-          "type": "date",
-          "label": "Start Date",
-          "sortOrder": 5,
-          "dateFormat": "DD/MM/YYYY",
-          "defaultValue": "${jobOrder.startDate}"
-        },
-        {
-          "name": "status",
-          "type": "dropdown",
-          "label": "Статус",
-          "sortOrder": 6,
-          "defaultValue": "Future",
           "readOnly": true,
-          "valueList": [
-            "Future",
-            "Current",
-            "Closed",
-            "Unfilled"
-          ],
-          "displayValueList": [
-            "Будущий",
-            "Заполнен",
-            "Закрыт",
-            "Незаполнен"
-          ]
-        },
-        {
-          "name": "employmentType",
-          "type": "dropdown",
-          "label": "Employment Type",
-          "sortOrder": 7,
-          "valueList": [
-            "Contract",
-            "Permanent",
-            "Contact to Hire",
-            "Direct Hire"
-          ],
-          "readOnly": true,
-          "defaultValue": "Permanent"
-        },
-        {
-          "name": "employeeType",
-          "type": "dropdown",
-          "label": "Employee Type",
-          "sortOrder": 8,
-          "valueList": [
-            "W2",
-            "Corp-to-Corp",
-            "1099"
-          ],
-          "defaultValue": "${candidate.employeeType}"
-        }
-      ]
-    }
-  },
-  "extend": {
-    "entity": "Placement",
-    "config": {
-      "placementChangeRequestType": "Mass Extend"
-    },
-    "form": {
-      "style": {
-        "title": "Extend placements",
-        "cancelButtonLabel": "Cancel",
-        "saveButtonLabel": "Next"
-      },
-      "fields": [
-        {
-          "name": "dateEnd",
-          "type": "date",
-          "label": "End Date",
-          "required": true,
-          "dateFormat": "DD-MM-YYYY",
-          "sortOrder": 0
-        }
-      ]
-    },
-    "table": {
-      "style": {
-        "title": "Update Placement Rates",
-        "singleActionButtonLabel": "Update",
-        "massActionButtonLabel": "Update all selected",
-        "formCancelButtonLabel": "Cancel!!!",
-        "formSaveButtonLabel": "Save the form"
-      },
-      "fields": [
-        {
-          "name": "dateBegin",
-          "type": "date",
-          "label": "Start Date",
-          "sortOrder": 6,
-          "dateFormat": "DD/MM/YYYY",
-          "defaultValue": "${dateBegin}",
-          "readOnly": true
-        },
-        {
-          "name": "dateEnd",
-          "type": "date",
-          "label": "End Date",
-          "sortOrder": 0,
-          "dateFormat": "DD/MM/YYYY"
-        },
-        {
-          "name": "status",
-          "type": "dropdown",
-          "label": "??????",
-          "sortOrder": 4,
-          "readOnly": true,
-          "defaultValue": "${status}",
-          "valueList": [
-            "Submitted"
-          ]
-        },
-        {
-          "name": "employmentType",
-          "type": "dropdown",
-          "label": "Employment Type",
-          "sortOrder": 5,
-          "defaultValue": "${employmentType}",
-          "valueList": [
-            "Contract",
-            "Permanent",
-            "Contact to Hire",
-            "Direct Hire"
-          ],
-          "readOnly": true
-        }
-      ]
-    }
-  },
-  "extendChangeRequest": {
-    "entity": "Placement",
-    "config": {
-      "placementChangeRequestType": "Mass Extend",
-      "onlyCreateChangeRequest": true,
-      "placementChangeRequestStatus": "Submitted"
-    },
-    "form": {
-      "style": {
-        "title": "Extend placements",
-        "cancelButtonLabel": "Cancel",
-        "saveButtonLabel": "Next"
-      },
-      "fields": [
-        {
-          "name": "dateEnd",
-          "type": "date",
-          "label": "End Date",
-          "required": true,
-          "dateFormat": "DD-MM-YYYY",
-          "sortOrder": 0
-        }
-      ]
-    },
-    "table": {
-      "style": {
-        "title": "Update Placement Rates",
-        "singleActionButtonLabel": "Update",
-        "massActionButtonLabel": "Update all selected",
-        "formCancelButtonLabel": "Cancel!!!",
-        "formSaveButtonLabel": "Save the form"
-      },
-      "fields": [
-        {
-          "name": "dateBegin",
-          "type": "date",
-          "label": "Start Date",
-          "sortOrder": 6,
-          "dateFormat": "DD/MM/YYYY",
-          "defaultValue": "${dateBegin}",
-          "readOnly": true
-        },
-        {
-          "name": "dateEnd",
-          "type": "date",
-          "label": "End Date",
-          "sortOrder": 0,
-          "dateFormat": "DD/MM/YYYY"
+          "sortOrder": 3
         },
         {
           "name": "status",
           "type": "dropdown",
           "label": "Status",
-          "sortOrder": 4,
-          "readOnly": true,
-          "defaultValue": "${status}",
+          "required": true,
+          "sortOrder": 5,
           "valueList": [
-            "Submitted"
+            "Rejected",
+            "Re-Submitted",
+            "Closed"
           ]
         },
         {
           "name": "employmentType",
           "type": "dropdown",
           "label": "Employment Type",
-          "sortOrder": 5,
-          "defaultValue": "${employmentType}",
+          "required": true,
+          "readOnly": true,
+          "sortOrder": 15,
+          "defaultValue": "${employmentType}"
+        },
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${dateBegin}"
+        },
+        {
+          "name": "dateEnd",
+          "type": "date",
+          "label": "End Date",
+          "required": true,
+          "sortOrder": 45,
+          "dateFormat": "DD-MM-YYYY",
+          "defaultValue": "${dateEnd}"
+        },
+        {
+          "name": "terminationReason",
+          "type": "dropdown",
+          "label": "Termination Reason",
+          "sortOrder": 60,
           "valueList": [
-            "Contract",
-            "Permanent",
-            "Contact to Hire",
-            "Direct Hire"
-          ],
-          "readOnly": true
+            "Assignment Complete",
+            "Converted",
+            "Job Abandonment",
+            "Resigned - Gave Notice",
+            "Resigned - No Notice",
+            "Term - Attendance",
+            "Term - Cultural",
+            "Term - Skills",
+            "Never Started",
+            "Failed Compliance"
+          ]
         }
       ]
     }
@@ -300,45 +134,81 @@
   "rates": {
     "entity": "Placement",
     "config": {
-      "placementChangeRequestType": "Mass Rate Change"
+      "placementChangeRequestType": "Update Rates"
     },
     "form": {
       "style": {
-        "title": "Update rates",
-        "cancelButtonLabel": "Cancel?",
-        "saveButtonLabel": "Next, yo."
+        "title": "Update Rates",
+        "cancelButtonLabel": "Cancel",
+        "saveButtonLabel": "Next"
       },
       "fields": [
         {
+          "name": "status",
+          "type": "dropdown",
+          "label": "Status",
+          "required": true,
+          "sortOrder": 5,
+          "valueList": [
+            "Submitted",
+            "Reviewed",
+            "Approved"
+          ],
+          "defaultValue": "Submitted"
+        },
+        {
+          "name": "dateEnd",
+          "type": "date",
+          "label": "End Date",
+          "required": true,
+          "sortOrder": 45,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${dateEnd}"
+        },
+        {
           "name": "payRate",
-          "type": "float",
+          "type": "currency",
           "label": "Pay Rate",
           "required": true,
-          "sortOrder": 0,
+          "sortOrder": 50,
           "defaultValue": "${payRate}"
         },
         {
-          "name": "clientBillRate",
-          "type": "float",
-          "label": "Bill Rate",
-          "required": true,
-          "sortOrder": 1,
-          "defaultValue": "${clientBillRate}"
+          "name": "dateEffective",
+          "type": "date",
+          "label": "Effective Date",
+          "sortOrder": 70,
+          "dateFormat": "DD/MM/YYYY"
         },
         {
           "name": "overtimeRate",
           "type": "float",
-          "label": "Overtime Rate",
+          "label": "Overtime Pay Rate",
           "required": true,
-          "sortOrder": 2,
+          "sortOrder": 80,
           "defaultValue": "${overtimeRate}"
+        },
+        {
+          "name": "clientBillRate",
+          "type": "currency",
+          "label": "Bill Rate",
+          "required": true,
+          "sortOrder": 90,
+          "defaultValue": "${clientBillRate}"
+        },
+        {
+          "name": "dateClientEffective",
+          "type": "date",
+          "label": "Effective Date (Client)",
+          "sortOrder": 100,
+          "dateFormat": "DD/MM/YYYY"
         },
         {
           "name": "clientOvertimeRate",
           "type": "float",
           "label": "Overtime Bill Rate",
           "required": true,
-          "sortOrder": 3,
+          "sortOrder": 245,
           "defaultValue": "${clientOvertimeRate}"
         }
       ]
@@ -348,80 +218,104 @@
         "title": "Update Placement Rates",
         "singleActionButtonLabel": "Update",
         "massActionButtonLabel": "Update all selected",
-        "formCancelButtonLabel": "Cancel!!!",
-        "formSaveButtonLabel": "Save the form"
+        "formCancelButtonLabel": "Cancel",
+        "formSaveButtonLabel": "Save"
       },
       "fields": [
         {
-          "name": "payRate",
-          "type": "float",
-          "label": "Pay Rate",
+          "name": "candidateName",
+          "type": "text",
+          "label": "Candidate",
           "required": true,
-          "sortOrder": 0
-        },
-        {
-          "name": "clientBillRate",
-          "type": "float",
-          "label": "Bill Rate",
-          "required": true,
-          "sortOrder": 1
-        },
-        {
-          "name": "overtimeRate",
-          "type": "float",
-          "label": "Overtime Rate",
-          "required": true,
-          "sortOrder": 2
-        },
-        {
-          "name": "clientOvertimeRate",
-          "type": "float",
-          "label": "Overtime Bill Rate",
-          "required": true,
+          "defaultValue": "${candidate.name}",
+          "readOnly": true,
           "sortOrder": 3
         },
         {
           "name": "status",
           "type": "dropdown",
           "label": "Status",
-          "sortOrder": 4,
-          "readOnly": true,
-          "defaultValue": "${status}",
+          "required": true,
+          "sortOrder": 5,
           "valueList": [
-            "Submitted"
-          ]
+            "Submitted",
+            "Reviewed",
+            "Approved"
+          ],
+          "defaultValue": "Submitted"
         },
         {
           "name": "employmentType",
           "type": "dropdown",
           "label": "Employment Type",
-          "sortOrder": 5,
-          "defaultValue": "${employmentType}",
-          "valueList": [
-            "Contract",
-            "Permanent",
-            "Contact to Hire",
-            "Direct Hire"
-          ],
-          "readOnly": true
+          "required": true,
+          "readOnly": true,
+          "sortOrder": 30,
+          "defaultValue": "${employmentType}"
         },
         {
           "name": "dateBegin",
           "type": "date",
           "label": "Start Date",
-          "sortOrder": 6,
+          "required": true,
+          "sortOrder": 40,
           "dateFormat": "DD/MM/YYYY",
-          "defaultValue": "${dateBegin}",
-          "readOnly": true
+          "defaultValue": "${dateBegin}"
         },
         {
           "name": "dateEnd",
           "type": "date",
           "label": "End Date",
-          "sortOrder": 7,
+          "required": true,
+          "sortOrder": 45,
           "dateFormat": "DD/MM/YYYY",
-          "defaultValue": "${dateEnd}",
-          "readOnly": true
+          "defaultValue": "${dateEnd}"
+        },
+        {
+          "name": "payRate",
+          "type": "currency",
+          "label": "Pay Rate",
+          "required": true,
+          "sortOrder": 50,
+          "defaultValue": "${payRate}"
+        },
+        {
+          "name": "dateEffective",
+          "type": "date",
+          "label": "Effective Date",
+          "sortOrder": 70,
+          "dateFormat": "DD/MM/YYYY"
+        },
+        {
+          "name": "overtimeRate",
+          "type": "float",
+          "label": "Overtime Pay Rate",
+          "required": true,
+          "sortOrder": 80,
+          "defaultValue": "${overtimeRate}"
+        },
+        {
+          "name": "clientBillRate",
+          "type": "currency",
+          "label": "Bill Rate",
+          "required": true,
+          "sortOrder": 90,
+          "defaultValue": "${clientBillRate}"
+        },
+        {
+          "name": "dateClientEffective",
+          "type": "date",
+          "label": "Effective Date (Client)",
+          "sortOrder": 100,
+          "dateFormat": "DD/MM/YYYY"
+        },
+        {
+          "name": "clientOvertimeRate",
+          "type": "float",
+          "label": "Overtime Bill Rate",
+          "required": true,
+          "sortOrder": 245,
+          "defaultValue": "${clientOvertimeRate}"
         }
       ]
     }
@@ -431,101 +325,41 @@
     "form": {
       "style": {
         "title": "Set defaults for all Placements to be created",
-        "cancelButtonLabel": "Cancel?",
-        "saveButtonLabel": "Next!"
+        "cancelButtonLabel": "Cancel",
+        "saveButtonLabel": "Next"
       },
       "fields": [
         {
-          "name": "payRate",
-          "type": "float",
-          "label": "Pay Rate",
-          "required": true,
-          "sortOrder": 0,
-          "defaultValue": "${jobOrder.payRate}"
-        },
-        {
-          "name": "clientBillRate",
-          "type": "float",
-          "label": "Bill Rate",
-          "required": true,
-          "sortOrder": 1,
-          "defaultValue": "${jobOrder.clientBillRate}"
-        },
-        {
           "name": "status",
-          "type": "text",
+          "type": "dropdown",
           "label": "Status",
-          "sortOrder": 2,
-          "defaultValue": "Submitted",
-          "readOnly": true
-        },
-        {
-          "name": "employmentType",
-          "type": "dropdown",
-          "label": "Employment Type",
-          "sortOrder": 3,
-          "defaultValue": "${jobOrder.employmentType}",
-          "valueList": [
-            "Contract",
-            "Permanent",
-            "Contact to Hire",
-            "Direct Hire"
-          ],
-          "readOnly": true
-        },
-        {
-          "name": "employeeType",
-          "type": "dropdown",
-          "label": "Employee Type",
-          "sortOrder": 4,
-          "defaultValue": "${candidate.employeeType}",
-          "valueList": [
-            "W2",
-            "Corp-to-Corp",
-            "1099"
-          ]
-        },
-        {
-          "name": "dateBegin",
-          "type": "date",
-          "label": "Start Date",
+          "required": true,
           "sortOrder": 5,
-          "defaultValue": "${jobOrder.startDate}",
-          "dateFormat": "DD/MM/YYYY"
+          "valueList": [
+            "Submitted",
+            "Reviewed",
+            "Re-Submitted"
+          ],
+          "defaultValue": "Submitted"
         },
         {
-          "name": "customText1",
-          "type": "email",
-          "label": "Candidate Email",
-          "sortOrder": 6,
-          "defaultValue": "${candidate.email}"
-        },
-        {
-          "name": "customTextBlock1",
-          "type": "textarea",
-          "label": "Comments",
-          "sortOrder": 7
-        },
-        {
-          "name": "customInt1",
-          "type": "radio",
-          "label": "Is Exempt?",
+          "name": "terminationReason",
+          "type": "dropdown",
+          "label": "Ending Reason",
+          "required": false,
           "sortOrder": 8,
           "valueList": [
-            "0",
-            "1"
-          ],
-          "displayValueList": [
-            "No",
-            "Yes"
-          ],
-          "defaultValue": "0"
-        },
-        {
-          "name": "customInt2",
-          "type": "integer",
-          "label": "Federal Exemptions",
-          "sortOrder": 10
+            "Assignment Complete",
+            "Converted",
+            "Job Abandonment",
+            "Resigned - Gave Notice",
+            "Resigned No Notice",
+            "Term - Attendance",
+            "Term - Cultural",
+            "Term - Skills",
+            "Never Started",
+            "Failed Compliance"
+          ]
         },
         {
           "name": "billingClientContact",
@@ -539,123 +373,214 @@
           "defaultValue": "${jobOrder.clientContact}"
         },
         {
-          "name": "location",
-          "label": "Work Location",
-          "sortOrder": 13,
-          "type": "picker",
-          "pickerEntityIdProperty": "id",
-          "pickerEntityLabelProperty": "title",
-          "pickerEntityType": "Location",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
-        }
-      ]
-    },
-    "table": {
-      "style": {
-        "title": "Create Placements",
-        "singleActionButtonLabel": "Create",
-        "massActionButtonLabel": "Create all selected",
-        "formCancelButtonLabel": "Cancel yo",
-        "formSaveButtonLabel": "Save the form"
-      },
-      "fields": [
-        {
-          "name": "payRate",
-          "type": "float",
-          "label": "Pay Rate",
-          "required": true,
-          "sortOrder": 0
+          "name": "reportTo",
+          "type": "text",
+          "label": "Reporting to",
+          "required": false,
+          "sortOrder": 20
         },
         {
-          "name": "clientBillRate",
-          "type": "float",
-          "label": "Bill Rate",
-          "required": true,
-          "sortOrder": 1
-        },
-        {
-          "name": "status",
+          "name": "correlatedCustomText1",
           "type": "dropdown",
-          "label": "Status",
-          "sortOrder": 2,
-          "defaultValue": "Submitted",
-          "readOnly": true,
+          "label": "Branch",
+          "required": true,
+          "sortOrder": 23,
           "valueList": [
-            "Submitted"
-          ]
+            "PP - Accounting & Finance",
+            "PP - Administrative",
+            "PP - Creative & Marketing",
+            "PP - Engineering",
+            "PP - HR",
+            "PP - IT",
+            "PP - Legal",
+            "PP - Sales",
+            "PP - Executive",
+            "PTS - Acct & Fin Temps",
+            "PTS - Temp Placement",
+            "PTS - Volume Staffing"
+          ],
+          "defaultValue": "PTS - Volume Staffing"
         },
         {
           "name": "employmentType",
           "type": "dropdown",
           "label": "Employment Type",
-          "sortOrder": 3,
+          "required": true,
+          "sortOrder": 30,
           "valueList": [
-            "Contract",
-            "Permanent",
-            "Contact to Hire",
-            "Direct Hire"
+            "Temporary",
+            "Temp to Hire"
           ],
-          "readOnly": true
-        },
-        {
-          "name": "employeeType",
-          "type": "dropdown",
-          "label": "Employee Type",
-          "sortOrder": 4,
-          "valueList": [
-            "W2",
-            "Corp-to-Corp",
-            "1099"
-          ]
+          "defaultValue": "${jobOrder.employmentType}"
         },
         {
           "name": "dateBegin",
           "type": "date",
           "label": "Start Date",
-          "sortOrder": 5,
-          "dateFormat": "DD/MM/YYYY"
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.startDate}"
         },
         {
-          "name": "customText1",
-          "type": "email",
-          "label": "Candidate Email",
-          "sortOrder": 6,
-          "defaultValue": "${candidate.email}"
+          "name": "dateEnd",
+          "type": "date",
+          "label": "End Date",
+          "required": true,
+          "sortOrder": 45,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.dateEnd}"
         },
         {
-          "name": "customText2",
-          "type": "email",
-          "label": "Contact Email",
-          "sortOrder": 7,
-          "defaultValue": "${jobOrder.clientContact.email}"
+          "name": "correlatedCustomText6",
+          "type": "text",
+          "label": "PO Number",
+          "required": false,
+          "sortOrder": 53,
+          "defaultValue": "${jobOrder.correlatedCustomText6}"
+        },
+        {
+          "name": "costCenter",
+          "type": "text",
+          "label": "Cost Center",
+          "required": false,
+          "sortOrder": 55,
+          "defaultValue": "${jobOrder.costCenter}"
         },
         {
           "name": "customTextBlock1",
           "type": "textarea",
           "label": "Comments",
-          "sortOrder": 8,
-          "defaultValue": "Created via Mass Placement"
+          "required": false,
+          "sortOrder": 110
         },
         {
-          "name": "customInt1",
-          "type": "radio",
-          "label": "Is Exempt?",
-          "sortOrder": 9,
+          "name": "payRate",
+          "type": "currency",
+          "label": "Pay Rate",
+          "required": true,
+          "sortOrder": 140,
+          "defaultValue": "${jobOrder.payRate}"
+        },
+        {
+          "name": "clientBillRate",
+          "type": "currency",
+          "label": "Bill Rate",
+          "required": true,
+          "sortOrder": 225,
+          "defaultValue": "${jobOrder.clientBillRate}"
+        },
+        {
+          "name": "correlatedCustomText4",
+          "type": "dropdown",
+          "label": "Invoice Format",
+          "required": true,
+          "sortOrder": 585,
           "valueList": [
-            "0",
-            "1"
+            "TEMP",
+            "TEMPCUS",
+            "TEMPJOB",
+            "TEMPPO",
+            "PERM"
           ],
-          "displayValueList": [
-            "No",
-            "Yes"
-          ],
-          "defaultValue": "0"
+          "defaultValue": "TEMP"
         },
         {
-          "name": "customInt2",
-          "type": "integer",
-          "label": "Federal Exemptions",
-          "sortOrder": 11
+          "name": "correlatedCustomText5",
+          "type": "dropdown",
+          "label": "Office",
+          "required": true,
+          "sortOrder": 590,
+          "defaultValue": "SLC"
+        },
+        {
+          "name": "correlatedCustomText7",
+          "type": "dropdown",
+          "label": "SBU",
+          "required": true,
+          "sortOrder": 600,
+          "valueList": [
+            "ACCT",
+            "ADMN",
+            "CRTV",
+            "ENG",
+            "HR",
+            "IT",
+            "LEGL",
+            "S&M",
+            "EXEC",
+            "STND",
+            "VOL"
+          ],
+          "defaultValue": "VOL"
+        },
+        {
+          "name": "referralFeeType",
+          "type": "text",
+          "label": "Referral Fee Type",
+          "required": false,
+          "sortOrder": 800,
+          "defaultValue": "Percentage"
+        },
+        {
+          "name": "approvingClientContact",
+          "type": "picker",
+          "label": "Approving Client Contact",
+          "sortOrder": 900,
+          "pickerEntityIdProperty": "id",
+          "pickerEntityLabelProperty": "name",
+          "pickerEntityType": "ClientContact",
+          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
+        },
+        {
+          "name": "backupApprovingClientContact",
+          "type": "picker",
+          "label": "Backup Approving Client Contact",
+          "sortOrder": 905,
+          "pickerEntityIdProperty": "id",
+          "pickerEntityLabelProperty": "name",
+          "pickerEntityType": "ClientContact",
+          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
+        }
+      ]
+    },
+    "updates": {
+      "candidate": {
+        "status": "Placed"
+      },
+      "jobSubmission": {
+        "status": "Placed"
+      }
+    },
+    "table": {
+      "style": {
+        "title": "Create Placement",
+        "singleActionButtonLabel": "Update",
+        "massActionButtonLabel": "Update all selected",
+        "formCancelButtonLabel": "Cancel",
+        "formSaveButtonLabel": "Save"
+      },
+      "fields": [
+        {
+          "name": "candidateName",
+          "type": "text",
+          "label": "Candidate",
+          "defaultValue": "${candidate.name}",
+          "displayOnly": true,
+          "sortOrder": 0
+        },
+        {
+          "name": "status",
+          "type": "dropdown",
+          "label": "Status",
+          "required": true,
+          "sortOrder": 5,
+          "valueList": [
+            "Submitted",
+            "Reviewed",
+            "Approved"
+          ],
+          "defaultValue": "Submitted"
         },
         {
           "name": "billingClientContact",
@@ -665,18 +590,179 @@
           "pickerEntityIdProperty": "id",
           "pickerEntityLabelProperty": "name",
           "pickerEntityType": "ClientContact",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
+          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}",
+          "defaultValue": "${jobOrder.clientContact}"
         },
         {
-          "name": "customText4",
+          "name": "reportTo",
+          "type": "text",
+          "label": "Reporting to",
+          "required": false,
+          "sortOrder": 20
+        },
+        {
+          "name": "correlatedCustomText1",
+          "type": "dropdown",
+          "label": "Branch",
+          "required": true,
+          "sortOrder": 23,
+          "valueList": [
+            "PP - Accounting & Finance",
+            "PP - Administrative",
+            "PP - Creative & Marketing",
+            "PP - Engineering",
+            "PP - HR",
+            "PP - IT",
+            "PP - Legal",
+            "PP - Sales",
+            "PP - Executive",
+            "PTS - Acct & Fin Temps",
+            "PTS - Temp Placement",
+            "PTS - Volume Staffing"
+          ],
+          "defaultValue": "PTS - Volume Staffing"
+        },
+        {
+          "name": "employmentType",
+          "type": "dropdown",
+          "label": "Employment Type",
+          "required": true,
+          "sortOrder": 30,
+          "valueList": [
+            "Temporary",
+            "Temp to Hire"
+          ]
+        },
+        {
+          "name": "dateBegin",
+          "type": "date",
+          "label": "Start Date",
+          "required": true,
+          "sortOrder": 40,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.startDate}"
+        },
+        {
+          "name": "dateEnd",
+          "type": "date",
+          "label": "End Date",
+          "required": true,
+          "sortOrder": 45,
+          "dateFormat": "DD/MM/YYYY",
+          "defaultValue": "${jobOrder.dateEnd}"
+        },
+        {
+          "name": "correlatedCustomText6",
+          "type": "text",
+          "label": "PO Number",
+          "required": false,
+          "sortOrder": 53,
+          "defaultValue": "${jobOrder.correlatedCustomText6}"
+        },
+        {
+          "name": "costCenter",
+          "type": "text",
+          "label": "Cost Center",
+          "required": false,
+          "sortOrder": 55
+        },
+        {
+          "name": "comments",
+          "type": "textarea",
+          "label": "Comments",
+          "required": false,
+          "sortOrder": 110
+        },
+        {
+          "name": "payRate",
+          "type": "currency",
+          "label": "Pay Rate",
+          "required": true,
+          "sortOrder": 140,
+          "defaultValue": "${jobOrder.payRate}"
+        },
+        {
+          "name": "clientBillRate",
+          "type": "currency",
+          "label": "Bill Rate",
+          "required": true,
+          "sortOrder": 225,
+          "defaultValue": "${jobOrder.clientBillRate}"
+        },
+        {
+          "name": "correlatedCustomText4",
+          "type": "dropdown",
+          "label": "Invoice Format",
+          "required": true,
+          "sortOrder": 585,
+          "valueList": [
+            "TEMP",
+            "TEMPCUS",
+            "TEMPJOB",
+            "TEMPPO",
+            "PERM"
+          ],
+          "defaultValue": "TEMP"
+        },
+        {
+          "name": "correlatedCustomText5",
+          "type": "dropdown",
+          "label": "Office",
+          "required": true,
+          "sortOrder": 590,
+          "valueList": [
+            "SLC"
+          ],
+          "defaultValue": "SLC"
+        },
+        {
+          "name": "correlatedCustomText7",
+          "type": "dropdown",
+          "label": "SBU",
+          "required": true,
+          "sortOrder": 600,
+          "valueList": [
+            "ACCT",
+            "ADMN",
+            "CRTV",
+            "ENG",
+            "HR",
+            "IT",
+            "LEGL",
+            "S&M",
+            "EXEC",
+            "STND",
+            "VOL"
+          ],
+          "defaultValue": "VOL"
+        },
+        {
+          "name": "referralFeeType",
+          "type": "Text",
+          "label": "Referral Fee Type",
+          "required": false,
+          "sortOrder": 800,
+          "defaultValue": "Percentage"
+        },
+        {
+          "name": "approvingClientContact",
           "type": "picker",
-          "label": "Timesheet Approving Contact",
-          "sortOrder": 13,
+          "label": "Approving Client Contact",
+          "sortOrder": 900,
           "pickerEntityIdProperty": "id",
           "pickerEntityLabelProperty": "name",
           "pickerEntityType": "ClientContact",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}",
-          "defaultValue": "${jobOrder.customText4}"
+          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
+        },
+        {
+          "name": "backupApprovingClientContact",
+          "type": "picker",
+          "label": "Backup Approving Client Contact",
+          "sortOrder": 905,
+          "pickerEntityIdProperty": "id",
+          "pickerEntityLabelProperty": "name",
+          "pickerEntityType": "ClientContact",
+          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
         }
       ]
     }
