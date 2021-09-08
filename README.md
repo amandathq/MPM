@@ -448,6 +448,13 @@
           "defaultValue": "${jobOrder.costCenter}"
         },
         {
+          "name": "flatFee",
+          "type": "currency",
+          "label": "Placement Fee Payable",
+          "required": false,
+          "sortOrder": 70
+        },
+        {
           "name": "customTextBlock1",
           "type": "textarea",
           "label": "Comments",
@@ -491,6 +498,9 @@
           "label": "Office",
           "required": true,
           "sortOrder": 590,
+          "valueList": [
+            "SLC"
+          ],
           "defaultValue": "SLC"
         },
         {
