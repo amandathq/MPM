@@ -338,28 +338,9 @@
           "valueList": [
             "Submitted",
             "Reviewed",
-            "Re-Submitted"
+            "Approved"
           ],
           "defaultValue": "Submitted"
-        },
-        {
-          "name": "terminationReason",
-          "type": "dropdown",
-          "label": "Ending Reason",
-          "required": false,
-          "sortOrder": 8,
-          "valueList": [
-            "Assignment Complete",
-            "Converted",
-            "Job Abandonment",
-            "Resigned - Gave Notice",
-            "Resigned No Notice",
-            "Term - Attendance",
-            "Term - Cultural",
-            "Term - Skills",
-            "Never Started",
-            "Failed Compliance"
-          ]
         },
         {
           "name": "billingClientContact",
@@ -519,38 +500,10 @@
           "type": "text",
           "label": "Referral Fee Type",
           "required": false,
-          "sortOrder": 800,
+          "sortOrder": 8000,
           "defaultValue": "Percentage"
-        },
-        {
-          "name": "approvingClientContact",
-          "type": "picker",
-          "label": "Approving Client Contact",
-          "sortOrder": 900,
-          "pickerEntityIdProperty": "id",
-          "pickerEntityLabelProperty": "name",
-          "pickerEntityType": "ClientContact",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
-        },
-        {
-          "name": "backupApprovingClientContact",
-          "type": "picker",
-          "label": "Backup Approving Client Contact",
-          "sortOrder": 905,
-          "pickerEntityIdProperty": "id",
-          "pickerEntityLabelProperty": "name",
-          "pickerEntityType": "ClientContact",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
         }
       ]
-    },
-    "updates": {
-      "candidate": {
-        "status": "Placed"
-      },
-      "jobSubmission": {
-        "status": "Placed"
-      }
     },
     "table": {
       "style": {
@@ -565,9 +518,19 @@
           "name": "candidateName",
           "type": "text",
           "label": "Candidate",
+          "required": true,
           "defaultValue": "${candidate.name}",
-          "displayOnly": true,
-          "sortOrder": 0
+          "readOnly": true,
+          "sortOrder": 3
+        },
+        {
+          "name": "jobTitle",
+          "type": "text",
+          "label": "Job",
+          "required": true,
+          "sortOrder": 4,
+          "defaultValue": "${jobOrder.title}",
+          "readOnly": true
         },
         {
           "name": "status",
@@ -682,6 +645,14 @@
           "defaultValue": "${jobOrder.payRate}"
         },
         {
+          "name": "markUpPercentage",
+          "type": "percentage",
+          "label": "Mark-up %",
+          "required": false,
+          "sortOrder": 220,
+          "defaultValue": "${jobOrder.markUpPercentage}"
+        },
+        {
           "name": "clientBillRate",
           "type": "currency",
           "label": "Bill Rate",
@@ -741,28 +712,8 @@
           "type": "Text",
           "label": "Referral Fee Type",
           "required": false,
-          "sortOrder": 800,
+          "sortOrder": 8000,
           "defaultValue": "Percentage"
-        },
-        {
-          "name": "approvingClientContact",
-          "type": "picker",
-          "label": "Approving Client Contact",
-          "sortOrder": 900,
-          "pickerEntityIdProperty": "id",
-          "pickerEntityLabelProperty": "name",
-          "pickerEntityType": "ClientContact",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
-        },
-        {
-          "name": "backupApprovingClientContact",
-          "type": "picker",
-          "label": "Backup Approving Client Contact",
-          "sortOrder": 905,
-          "pickerEntityIdProperty": "id",
-          "pickerEntityLabelProperty": "name",
-          "pickerEntityType": "ClientContact",
-          "pickerEntityAdditionalLogic": "AND clientCorporation.id = ${jobOrder.clientCorporation.id}"
         }
       ]
     }
